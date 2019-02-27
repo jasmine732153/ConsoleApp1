@@ -5,7 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
+    class Program
 {
+
+
+    static void Main(string[] args)
+    {
+        var OrderProcessor = new OrderProcessor();
+        var order = new Order { DatePlaced = DateTime.Now, TotalPrice = 100f };
+        OrderProcessor.Process(order);
+    }
+    
     public class OrderProcessor
     {
         private redaonly ShippingCalculator_shippingCalculator;
@@ -25,5 +35,11 @@ namespace ConsoleApp1
         }
 
         }
+public class ShippingCalculator {
+    public float CalculateShipping(Order order)
+    {
+        if (order.TotalPrice < 30f) return order.TotalPrice = 0.1f;
+        return 0;
+
     }
 }
