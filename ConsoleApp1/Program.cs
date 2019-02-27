@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Program
+    public class OrderProcessor
     {
-        static void Main(string[] args)
+        private redaonly ShippingCalculator_shippingCalculator;
+        public OrderProcessor()
         {
-            var OrderProcessor = new OrderProcessor();
-            var order = new Order { DatePlaced = DateTime.Now, TotalPrice = 100f };
-            OrderProcessor.Process(order);
+            _ShippingCalculator = new ShippingCalculator();
+        }
+        public void Process(Order order)
+        {
+            if (order.IsShipped)
+                throw new InvalidOperationException("this order is already processed");
+            order.Shipment = new Shipment
+            {
+                Cost = ShippingCalculator.CalculatingShipping(order);
+            ShippingDate = DateTime.Today.AddDays(1);
+        }
+        }
 
         }
     }
